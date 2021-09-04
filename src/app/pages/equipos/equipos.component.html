@@ -1,0 +1,90 @@
+
+<h1>Inventario de Equipos</h1>
+<hr>
+
+<div  >
+  <div class="row">
+    <div class="col">
+      <input type="text" name="termino" placeholder="Buscar" class="form-control" [(ngModel)]="termino">
+    </div>
+  </div>
+</div>
+
+<div class="mt-5">
+    <div class="col text-right">
+        <button routerLink="/equipo/nuevo" class="btn btn-outline-primary">
+            <i class="fa fa-plus"></i> Agregar Equipo
+        </button>
+    </div>
+</div>
+
+
+<table class="table mt-3 animated fadeIn faster" *ngIf="!cargando && equipos.length > 0">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre del perteneciente</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Numero de Serie</th>
+        <th scope="col">Capacidad de Ram</th>
+        <th scope="col">Almacenamiento en disco duro</th>
+        <th scope="col">Disponible</th>
+        <th scope="col">Herramientas</th>
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let equipo of equipos | busquedafiltro: termino ; let i = index">
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{ equipo.nombre }}</td>
+        <td>{{ equipo.marca }}</td>
+        <td>{{ equipo.serie }}</td>
+        <td>{{ equipo.capacidad }}</td>
+        <td>{{ equipo.almacenamiento }}</td>
+        <td>
+          <label class="badge rounded-pill bg-success" *ngIf="equipo.disponible">Disponible</label>
+          <label class="badge rounded-pill bg-danger" *ngIf="!equipo.disponible">Ocupado</label>
+        </td>
+
+        <td>
+          <button class="btn btn-info mr-1" [routerLink]="['/equipo', equipo.id]">
+            <i class="fa fa-pen"></i>Edit
+          </button>
+
+        </td>
+
+        <td>
+
+          <button class="btn btn-danger"
+                  (click)="borrarEquipo(equipo, i)">
+                  <i class="fa fa-trash"></i>Delete
+          </button>
+
+        </td>
+
+      </tr>
+     
+    </tbody>
+  </table>
+
+  <div *ngIf="!cargando && equipos.length === 0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
+      <h4 class="alert-heading">No hay registros</h4>
+      <p>
+          <i class="fa fa-exclamation fa-2x"></i>
+      </p>
+  </div>
+
+  <div class="alert alert-info text-center mt-3 animated fadeIn faster" *ngIf="cargando">
+      <h4 class="alert-heading">Cargando</h4>
+      <p>
+          <i class="spinner-border fa-2x"></i>
+      </p>
+
+      <p class="mb-0">
+        Espere por favor
+      </p>
+
+  </div>
+

@@ -1,0 +1,126 @@
+<h1>Equipo <small>Nombre del equipo</small></h1>
+<hr>
+
+
+<div class="row text-right">
+    <div class="col">
+      <button class="btn btn-outline-danger "
+              routerLink="/equipos">
+        <i class="fa fa-arrow-left"></i>
+        Regresar
+      </button>
+    </div>
+  </div>
+  
+
+
+
+<div class="row text-right">
+    <div class="col">
+ 
+     <form (ngSubmit)="guardar(f)" #f="ngForm">
+
+      <div class="form-group animated-fadeIn">
+          <label >Firebase ID</label>
+          <input type="text" class="form-control" 
+                             placeholder="Firebase ID"   
+                             disabled="disabled"
+                             [(ngModel)]="equipo.id"
+                             name="id"
+                             >
+          <small  class="form-text text-muted">Este campo es autogenerado</small>
+      </div>
+
+      <div class="form-group">
+          <label>Nombre del perteneciente</label>
+          <input type="text" 
+                 [(ngModel)]="equipo.nombre"
+                 name="nombre"
+                 class="form-control"
+                 placeholder="Nombre del equipo"
+                 required>
+      </div>
+
+
+      <div class="form-group">
+        <label>Marca</label>
+        <input type="text" 
+               [(ngModel)]="equipo.marca"
+               class="form-control"
+               name="marca"
+               placeholder="Nombre del equipo"
+               required>
+    </div>
+
+
+    <div class="form-group">
+        <label>Numero de Serie</label>
+        <input type="text" 
+               [(ngModel)]="equipo.serie"
+               class="form-control"
+               name="serie"
+               placeholder="Nombre del equipo"
+               required>
+    </div>
+
+
+    <div class="form-group">
+        <label>Capacidad de Ram</label>
+        <input type="text" 
+               [(ngModel)]="equipo.capacidad"
+               class="form-control"
+               name="capacidad"
+               placeholder="Nombre del equipo"
+               required>
+    </div>
+
+
+    <div class="form-group">
+        <label>Almacenamiento en disco duro</label>
+        <input type="text" 
+               [(ngModel)]="equipo.almacenamiento"
+               class="form-control"
+               name="almacenamiento"
+               placeholder="Nombre del equipo"
+               required>
+    </div>
+
+
+    <div class="form-group">
+        <label>Estado</label>
+        <br>
+
+        <button *ngIf="equipo.disponible" 
+                (click)="equipo.disponible=false"
+                class="btn btn-outline-success w-50" 
+                type="button">
+  <i class="fa fa-smile-wink"></i>
+  Disponible
+</button>
+
+<button *ngIf="!equipo.disponible" 
+        (click)="equipo.disponible=true"
+        class="btn btn-outline-danger w-50"
+        type="button">
+    <i class="fa fa-dizzy"></i>
+    Ocupado
+</button>
+
+</div>
+
+
+
+<hr>
+<div class="form-group text-center">
+<button type="submit"
+        class="btn btn-primary w-25">
+  <i class="fa fa-save"></i>
+  Guardar
+</button>
+</div>
+
+
+     </form>
+
+    </div>
+</div>
